@@ -8,12 +8,14 @@ filename = "/mnt/C/Users/pauli/ejercicio-biopython/biopython-notebook/notebooks/
 def summarize_contents(filename):
   lista = []
   lista = os.path.split(filename)
-  record = SeqIO.read(filename, "genbank")
-  print("Name: ", record.name)
-  print("Path: ", os.path.dirname(filename))
-  record = list(SeqIO.parse(filename , "genbank"))
-  print("Num_records: " % len(records))
+  records = list(SeqIO.parse(filename, "genbank"))
+  cadena = ("file: " + lista[1])
+  cadena += ("path: " + lista[2])
+  cadena += ("num_records = %i records" % len(records))
   for seq_record in SeqIO.parse(filename, "genbank"):
-    print("ID :",record.id)
-    print("Name: ",record.name)
-    print("Description: ",record.description)
+    cadena += ("NAME: " + str(seq_record.name))
+    cadena += ("ID: " + str(seq_record.id))
+    cadena += ("DESCRIPTION: " + str(seq_record.description))
+  print(cadena)
+ 
+ 
